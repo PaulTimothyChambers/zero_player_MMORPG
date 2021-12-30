@@ -23,10 +23,9 @@
 - SvelteKit
 - Netlify
 - JavaScript
-- Vite
 - CSS
 - HTML
-- A little fiddling of Vite
+- A little fiddling with Vite
 - Cypress (in future iterations)
 - Possibly Express.js, should I decide to move the data (currently stored in various svelte/stores) to a dedicated server (most likely to be deployed on Heroku)
 
