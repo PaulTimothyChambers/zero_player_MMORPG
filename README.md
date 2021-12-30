@@ -62,6 +62,7 @@ Detailed instructions:
 ~ Now, back to the terminal we go...
 
 **Part 3: the Terminal Sequel No One Asked For**
+
 7. Back in the terminal, type ```git clone```, then press the ```space bar``` once. After hitting the space bar, press ```cmd + v``` to paste in the SSH address we copied earlier
 8. Press enter and wait for a few moments while the terminal frameworks
 9. You will know the terminal is finished working once the directory you are is shown once more, like in the following image
@@ -76,6 +77,7 @@ Detailed instructions:
 12. Only two more steps to go! Type ```npm run dev``` in your terminal, and press ```enter```
 
 **Part THE END: Back to the Browser, Marty!**
+
 13. Open up any tab in your browser and type ```localhost:3000``` into the address bar. Press ```enter``` and you're done! The interactive portion of this application will now display itself on your screen. Enjoy! :-)
 ![address bar](https://i.imgur.com/cLExWDL.png)
 ![application displaying](https://i.imgur.com/Ge3Djlj.png)
