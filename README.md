@@ -52,6 +52,7 @@ Detailed instructions:
 ~ Time to move on to the browser...
 
 **Part 2: the Browser**
+
 4. Scroll to the top of this webpage and you will see a green ```code``` button. Click it and a dropdown menu will appear
 ![code button](https://i.imgur.com/x9mqNUV.png)
 5. Select the ```SSH``` tab by clicking on it (you'll know it's selected when an orange line appears underneath it)
