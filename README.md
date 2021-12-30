@@ -42,39 +42,55 @@ Brief overview of installation process:
 Detailed instructions:
 
 **Part 1: the Terminal**
+
 1. Open the ```terminal``` application (most likely located in the launchpad in the 'other' folder)
 ![launchpad's other folder](https://i.imgur.com/VNnpYrp.png)
 ![terminal app](https://i.imgur.com/H6b8vWk.png)
+
 2. By default, the terminal should start you in the directory ```Users/your-username-here``` (see example below)
 ![terminal example](https://i.imgur.com/3x2pIzr.png)
 ***Note: if your terminal shows you deeper into your directories than this (for example, ```Users/your-username-here/desktop/my-music-folder```), type ```cd ~``` in the terminal and press the ```enter``` key***
+
 3. Next, type ```cd desktop``` into the terminal and press ```enter```
+
 ~ Time to move on to the browser...
+
 
 **Part 2: the Browser**
 
 4. Scroll to the top of this webpage and you will see a green ```code``` button. Click it and a dropdown menu will appear
 ![code button](https://i.imgur.com/x9mqNUV.png)
+
 5. Select the ```SSH``` tab by clicking on it (you'll know it's selected when an orange line appears underneath it)
 ![SSH button](https://i.imgur.com/mnG2k7u.png)
+
 6. Once the ```SSH``` tab is selected, press the button (as shown below) to copy this repository's SSH address to your clipboard
 ![copy button](https://i.imgur.com/cANRFU5.png)
+
 ~ Now, back to the terminal we go...
+
 
 **Part 3: the Terminal Sequel No One Asked For**
 
 7. Back in the terminal, type ```git clone```, then press the ```space bar``` once. After hitting the space bar, press ```cmd + v``` to paste in the SSH address we copied earlier
+ 
 8. Press enter and wait for a few moments while the terminal frameworks
+ 
 9. You will know the terminal is finished working once the directory you are is shown once more, like in the following image
 ![cloning complete](https://i.imgur.com/zVids5G.png)
+
 10. Next, type ```cd zero_player_MMORPG```. This will navigate you into the directory of the project you just copied onto your desktop
 
+
 ~ We're almost there! Just a few more, short steps...
+
 
 11. Remaining in the terminal, type ```npm install``` and wait for it to finish working (which will look ***very loosely*** like the following image)
 ![npm installed](https://i.imgur.com/4MYBjub.png)
 ***Note: notice once more how the "address" of the terminal is shown at the bottom, once the process initiated by the "npm install" is complete***
+
 12. Only two more steps to go! Type ```npm run dev``` in your terminal, and press ```enter```
+
 
 **Part THE END: Back to the Browser, Marty!**
 
