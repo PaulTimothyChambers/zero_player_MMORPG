@@ -1,4 +1,4 @@
-# John Conway's Game of Life (reimagined as an MMORPG)
+# John Conway's Game of Life reimagined as an MMORPG (minus the second 'M', the 'R', and the 'P'...so just a MOG, really)
 
 ## Table of Contents
 
