@@ -1,39 +1,49 @@
-# create-svelte
+# John Conway's Game of Life (reimagined as an MMORPG)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte);
+## Table of Contents
 
-## Creating a project
+- [Abstract](#Abstract)
+- [Technologies](#Technologies)
+- [Code Architecture](#Code-Architecture)
+- [Install and Set Up](#Install-and-Set-Up)
+- [Illustrations](#Illustrations)
+- [Wins](#Wins)
+- [Challenges](#Challenges)
+- [Contributors](#Contributors)
+- [Project Specs](#Project-Specs)
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Abstract
 
-```bash
-# create a new project in the current directory
-npm init svelte@next
 
-# create a new project in my-app
-npm init svelte@next my-app
-```
 
-> Note: the `@next` is temporary
+## Technologies
 
-## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-```bash
-npm run dev
+## Install and Set Up
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
 
-## Building
 
-Before creating a production version of your app, install an [adapter](https://kit.svelte.dev/docs#adapters) for your target environment. Then:
+## Code Architecture
 
-```bash
-npm run build
-```
 
-> You can preview the built app with `npm run preview`, regardless of whether you installed an adapter. This should _not_ be used to serve your app in production.
-# ZeroPlayerMMORPG
+
+## Illustrations
+
+
+
+## Wins
+
+-
+
+## Challenges
+
+-
+
+## Future Features
+
+-
+
+## Contributors
+
+- Paul Chambers [<img src="https://img.shields.io/badge/GitHub-181717.svg?&style=flaste&logo=github&logoColor=white" />](https://github.com/PaulTimothyChambers)|[<img src= "https://img.shields.io/badge/in-LinkedIn-blue" />](https://www.linkedin.com/in/paultimothychambers/)
