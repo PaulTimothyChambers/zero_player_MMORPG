@@ -78,7 +78,7 @@ Detailed instructions:
 
 7. Back in the terminal, type ```git clone```, then press the ```space bar``` once. After hitting the space bar, press ```cmd + v``` to paste in the SSH address we copied earlier
  
-8. Press enter and wait for a few moments while the terminal frameworks
+8. Press enter and wait for a few moments while the terminal works
  
 9. You will know the terminal is finished working once the directory you are is shown once more, like in the following image
 
