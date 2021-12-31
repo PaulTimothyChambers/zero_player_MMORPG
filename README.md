@@ -44,8 +44,8 @@ Detailed instructions:
 
 1. Open the ```terminal``` application (most likely located in the launchpad in the 'other' folder)
 
-![launchpad's other folder](https://i.imgur.com/hEDcSfO.png)
-![terminal app](https://i.imgur.com/dr2hdT8.png)
+![launchpad's other folder](https://i.imgur.com/dr2hdT8.png)
+![terminal app](https://i.imgur.com/hEDcSfO.png)
 
 2. By default, the terminal should start you in the directory ```Users/your-username-here``` (see example below)
 
