@@ -124,6 +124,10 @@ Detailed instructions:
 
 - Helpful, pop-up 'hints' to display in certain cases. For example, if a user creates a custom configuration where no active cells have any active neighboring cells, pressing 'Begin Game' will cause all the cells to immediately become inactive on the first iteration through the gameboard. Within the game over notification, a helpful hint could also be displayed, advising a user to be sure to group active cells to some degree, in order to allow the rules of the game to extrapolate further on their design.
 
+- A way for a user to remove and/or rename saved configurations.
+
+- A way to for a user to provide a custom title to any configuration they save for later use
+
 ## Contributors
 
 - Paul Chambers [<img src="https://img.shields.io/badge/GitHub-181717.svg?&style=flaste&logo=github&logoColor=white" />](https://github.com/PaulTimothyChambers)|[<img src= "https://img.shields.io/badge/in-LinkedIn-blue" />](https://www.linkedin.com/in/paultimothychambers/)
