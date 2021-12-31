@@ -34,10 +34,14 @@
 
 ***Note: following this guide is the only way to interact with the project until such time as it has been successfully deployed to the web. This guide assumes that the reader is unfamiliar with how to complete any of the following installation steps, so included below is a detailed, step-by-step walk-through of how to accomplish all that is needed to get this project 'up and running'***
 
+-----------------------------------------------------------------------------
+
 **Brief overview of installation process:**
   - Clone this repository to your local machine
   - Install development dependencies
   - Run the project from a local server port (default is port 3000)
+
+-----------------------------------------------------------------------------
 
 ### **Detailed instructions:**
 
@@ -55,8 +59,11 @@
 
 3. Next, type ```cd desktop``` into the terminal and press ```enter```
 
+-----------------------------------------------------------------------------
+
 ***~ Time to move on to the browser...***
 
+-----------------------------------------------------------------------------
 
 #### **Part 2: the Browser**
 
@@ -72,8 +79,11 @@
 
 ![copy button](https://i.imgur.com/Y6jnw9a.png)
 
+-----------------------------------------------------------------------------
+
 ***~ Now, back to the terminal we go...***
 
+-----------------------------------------------------------------------------
 
 #### **Part 3: the Terminal Sequel No One Asked For**
 
@@ -87,9 +97,11 @@
 
 10. Next, type ```cd zero_player_MMORPG```. This will navigate you into the directory of the project you just copied onto your desktop
 
+-----------------------------------------------------------------------------
 
 ***~ We're almost there! Just a few more, short steps...***
 
+-----------------------------------------------------------------------------
 
 11. Remaining in the terminal, type ```npm install``` and wait for it to finish working (which will look ***very loosely*** like the following image)
 
@@ -98,6 +110,7 @@
 
 12. Only two more steps to go! Type ```npm run dev``` in your terminal, and press ```enter```
 
+-----------------------------------------------------------------------------
 
 #### **Part THE END: Back to the Browser, Marty!**
 
