@@ -39,7 +39,7 @@
   - Install development dependencies
   - Run the project from a local server port (default is port 3000)
 
-### **Detailed instructions:********
+### **Detailed instructions:**
 
 #### **Part 1: the Terminal**
 
