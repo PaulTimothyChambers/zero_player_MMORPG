@@ -109,7 +109,7 @@ Detailed instructions:
 
 ## Illustrations
 
-![app in action](https://i.imgur.com/MpffquD.gif)
+![app in action](https://imgur.com/MpffquD.gif)
 
 ## Wins
 
