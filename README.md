@@ -107,13 +107,9 @@ Detailed instructions:
 ![application displaying](https://i.imgur.com/Baln7eu.png)
 
 
-## Code Architecture
-
-
-
 ## Illustrations
 
-
+![app in action](https://i.imgur.com/MpffquD.gif)
 
 ## Wins
 
