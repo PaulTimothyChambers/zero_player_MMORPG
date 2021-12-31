@@ -111,17 +111,18 @@ Detailed instructions:
 
 ![app in action](https://github.com/PaulTimothyChambers/zero_player_MMORPG/blob/main/cut.gif)
 
-## Wins
-
--
-
-## Challenges
-
--
 
 ## Future Features
 
--
+- A 'Game Over' notification that will pop up once there are no active cells left, active cells are in static configurations, and/or active cells are in an infinite 'spin'. Once a game is over, a notification will display to the 'player' how many iterations their configuration was able to last before becoming stagnate (because cells 'leaving' the gameboard simply loop to the opposite side, the configurations typically considered infinite may no longer be so. This leaves open the possibility of integrating a player's iteration count with an online leaderboard, where players can compete to achieve the highest number of iterations)
+
+- A 'Preview Configuration' btton for each saved configuration
+
+- Information icons a user can hover over to view helpful details for each on-screen button's functionality
+
+- An information card detailing the 'rules' of the game, or perhaps a button a user can click to bring up these rules
+
+- Helpful, pop-up 'hints' to display in certain cases. For example, if a user creates a custom configuration where no active cells have any active neighboring cells, pressing 'Begin Game' will cause all the cells to immediately become inactive on the first iteration through the gameboard. Within the game over notification, a helpful hint could also be displayed, advising a user to be sure to group active cells to some degree, in order to allow the rules of the game to extrapolate further on their design.
 
 ## Contributors
 
