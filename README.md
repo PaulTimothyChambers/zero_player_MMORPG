@@ -109,7 +109,7 @@ Detailed instructions:
 
 ## Illustrations
 
-![app in action](https://imgur.com/MpffquD.gif)
+![app in action](https://github.com/PaulTimothyChambers/zero_player_MMORPG/blob/main/cut.gif)
 
 ## Wins
 
