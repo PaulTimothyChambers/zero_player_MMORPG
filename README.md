@@ -125,7 +125,9 @@
 
 ## **Future Features**
 
-- A 'Game Over' notification that will pop up once there are no active cells left, active cells are in static configurations, and/or active cells are in an infinite 'spin'. Once a game is over, a notification will display to the 'player' how many iterations their configuration was able to last before becoming stagnate (because cells 'leaving' the gameboard simply loop to the opposite side, the configurations typically considered infinite may no longer be so. This leaves open the possibility of integrating a player's iteration count with an online leaderboard, where players can compete to achieve the highest number of iterations)
+- A leaderboard displaying the top players' scores
+
+- The total score achievable for each preset configuration displayed next to that configuration
 
 - A 'Preview Configuration' button for each saved configuration
 
