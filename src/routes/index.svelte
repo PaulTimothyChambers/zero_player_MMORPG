@@ -4,189 +4,245 @@
 
 <script>
   import GameBoard from '../GameBoard.svelte';
-  // import PreviewGameBoard from '../PreviewGameBoard.svelte';
   import { gameBoard, savedConfigs } from '/store/savedConfigs.js'
-  import { get } from 'svelte/store';
-
   let gameButton
-  let isFreshlyOpened = true
-  let isViewingConfigs = false
-  let updateBoard
-  let iterationCount = 0
   let gameInPlay
+  let updateBoard
+  let checkingLoops
+  let checkingInactivity
+  let ranSelectors = false
+  let ignoredCount = 0
+  let iterationCount = 0
   let isPaused = false
-  // let previewBoard = []
-
-  const beginSelectingCells = () => {
-    gameButton = document.getElementById('gameButton')
-    gameBoard.forEach(cell => {
-      determineSurrCells(cell)
-      cell.position = document.getElementById(`${cell.id}`)
-    })
-    isFreshlyOpened = false
-  }
-
-  const determineSurrCells = (cell) => {
-    let surroundingCellsWithUndefined = [
-      gameBoard[cell.id-1],
-      gameBoard[cell.id+1],
-      gameBoard[cell.id-99],
-      gameBoard[cell.id+99],
-      gameBoard[cell.id-100],
-      gameBoard[cell.id+100],
-      gameBoard[cell.id-101],
-      gameBoard[cell.id+101],
-      gameBoard[cell.id-6399],
-      gameBoard[cell.id+6399],
-      gameBoard[cell.id-6400],
-      gameBoard[cell.id+6400],
-      gameBoard[cell.id-6401],
-      gameBoard[cell.id+6401],
-      gameBoard[cell.id-6499],
-      gameBoard[cell.id+6499],
-    ]
-    const surroundingCells = surroundingCellsWithUndefined.filter(cell => cell !== undefined)
-    cell.surroundingCells = surroundingCells
-  }
+  let loopingWarning = false
+  let allCellsInactive = false
+  let isViewingConfigs = false
 
   const viewSavedConfigs = () => {
     isViewingConfigs = true
   }
 
+  const getQuerySelectors = () => {
+    if (!ranSelectors) {
+      gameBoard.forEach(cell => {
+        cell.position = document.getElementById(`${cell.id}`)
+      })
+
+      gameButton = document.getElementById('gameButton')
+      ranSelectors = true
+    }
+  }
+
   const beginGame = () => {
     const activeCell = gameBoard.find(cell => cell.value)
+
     if (activeCell && gameButton.textContent === 'BEGIN GAME') {
       gameButton.textContent = 'PAUSE GAME'
-      gameInPlay = setInterval(cycle, 60)
+      gameInPlay = setInterval(cycle, 80)
+
     } else {
       pauseGame()
     }
+
     isPaused = true
   }
 
   const cycle = () => {
-    updateBoard = setTimeout(changeStatus, 30)
     gameBoard.forEach(cell => {
-      if (cell.value) {
-        checkActiveCellFutureStatus(cell)
-      } else {
-        checkInactivCellFutureStatus(cell)
-      }
+      checkActiveCellFutureStatus(gameBoard[cell.id])
     })
+
+    checkingLoops = setTimeout(checkForLoopingCells, 25)
+    checkingInactivity = setTimeout(checkCellsForInactivity, 30)
+    updateBoard = setTimeout(changeStatus, 35)
   }
 
   const checkActiveCellFutureStatus = (cell) => {
-    if (getActiveSurroundingCellValues(cell) < 2 || getActiveSurroundingCellValues(cell) > 3) {
-      markForInactive(cell.position.firstChild)
-    }
-  }
-
-  const checkInactivCellFutureStatus = (cell) => {
-    if (getActiveSurroundingCellValues(cell) === 3) {
-      markForActive(cell.position.firstChild)
+    if (gameBoard[cell.id].value && getActiveSurroundingCellValues(gameBoard[cell.id]) < 2 || gameBoard[cell.id].value && getActiveSurroundingCellValues(gameBoard[cell.id]) > 3) {
+      markForInactive(gameBoard[cell.id])
+    } else if (!gameBoard[cell.id].value && getActiveSurroundingCellValues(gameBoard[cell.id]) === 3) {
+      markForActive(gameBoard[cell.id])
     }
   }
 
   const getActiveSurroundingCellValues = (cell) => {
-    const cellsValue = cell.surroundingCells.reduce((acc, surroundingCell) => {
-      return acc += gameBoard[surroundingCell.id].value
-    }, 0)
-    return cellsValue
+    let value = 0
+
+    gameBoard[cell.id].surroundingCells.forEach(surrCell => {
+      value += gameBoard[surrCell].value
+    })
+
+    return value
   }
 
   const markForInactive = (cell) => {
-    cell.classList.add('marked-for-inactive')
+    gameBoard[cell.id].position.firstChild.classList.add('marked-for-inactive')
+    gameBoard[cell.id].gotMarked = true
   }
 
   const markForActive = (cell) => {
-    cell.classList.add('marked-for-active')
+    gameBoard[cell.id].position.firstChild.classList.add('marked-for-active')
+    gameBoard[cell.id].gotMarked = true
+  }
+
+  const checkForLoopingCells = (cell) => {
+      gameBoard.forEach(cell => {
+        if (
+          gameBoard[cell.id].value === 1 &&
+          gameBoard[cell.top].value === 1 &&
+          gameBoard[cell.bottom].value === 1 &&
+          gameBoard[cell.top].gotMarked === true &&
+          gameBoard[cell.bottom].gotMarked === true
+        ) {
+            gameBoard[cell.id].inDanger = true
+            gameBoard[cell.top].inDanger = true
+            gameBoard[cell.bottom].inDanger = true
+            gameBoard[cell.id].gotMarked = false
+            gameBoard[cell.left].gotMarked = false
+            gameBoard[cell.right].gotMarked = false
+
+        } else if (
+          gameBoard[cell.id].value === 1 &&
+          gameBoard[cell.left].value === 1 &&
+          gameBoard[cell.right].value === 1 &&
+          gameBoard[cell.left].gotMarked === true &&
+          gameBoard[cell.right].gotMarked === true
+        ) {
+            gameBoard[cell.id].inDanger = true
+            gameBoard[cell.left].inDanger = true
+            gameBoard[cell.right].inDanger = true
+            gameBoard[cell.id].gotMarked = false
+            gameBoard[cell.top].gotMarked = false
+            gameBoard[cell.bottom].gotMarked = false
+        }
+      })
+  }
+
+  const markCellInDanger = (cell, bool) => {
+    gameBoard[cell.id].inDanger = bool
+  }
+
+  const unmarkCells = () => {
+    gameBoard.forEach(cell => {
+      gameBoard[cell.id].gotMarked = false
+    })
+  }
+
+  const checkCellsForInactivity = () => {
+    const cellsNotInDanger = gameBoard.filter(cell => !gameBoard[cell.id].inDanger)
+    const unmarkedCells = gameBoard.filter(cell => {
+        return !gameBoard[cell.id].gotMarked
+    })
+
+    let mathed = gameBoard.filter(cell => gameBoard[cell.id].inDanger).length / 3
+    let sub = gameBoard.filter(cell => gameBoard[cell.id].gotMarked).length - mathed
+    let unm = unmarkedCells.length - sub
+
+    if (cellsNotInDanger.length === unm || unmarkedCells.length === gameBoard.length) {
+      allCellsInactive = true
+    }
   }
 
   const changeStatus = () => {
-    gameBoard.forEach(cell => {
-      const cellClass = cell.position.firstChild.classList
-      if (cellClass.contains('marked-for-inactive')) {
-        cellClass.add('hidden')
-        cellClass.remove('marked-for-inactive')
-        changeCellValue(cell.id)
+    if (!allCellsInactive) {
+      gameBoard.forEach(cell => {
+        const cellClass = gameBoard[cell.id].position.firstChild.classList
 
-      } else if (cellClass.contains('marked-for-active')) {
-        cellClass.remove('hidden')
-        cellClass.remove('marked-for-active')
-        changeCellValue(cell.id)
-      }
-    })
-    iterationCount++
+        if (cellClass.contains('marked-for-inactive')) {
+          cellClass.add('hidden')
+          cellClass.remove('marked-for-inactive')
+          changeCellValue(gameBoard[cell.id].id)
+          iterationCount++
+
+        } else if (cellClass.contains('marked-for-active')) {
+          cellClass.remove('hidden')
+          cellClass.remove('marked-for-active')
+          changeCellValue(gameBoard[cell.id].id)
+          iterationCount++
+        }
+
+        gameBoard[cell.id].inDanger = false
+        gameBoard[cell.id].gotMarked = false
+      })
+
+      iterationCount++
+      allCellsInactive = false
+
+    } else {
+      endGame()
+    }
   }
 
   const pauseGame = () => {
-    clearInterval(gameInPlay)
+    clearTimeout(checkingLoops)
+    clearTimeout(checkingInactivity)
     clearTimeout(updateBoard)
+    clearInterval(gameInPlay)
     gameButton.textContent = 'BEGIN GAME'
   }
 
   const endGame = () => {
     gameBoard.forEach(cell => {
-      const cellClass = cell.position.firstChild.classList
-      if (cell.value) {
-        cellClass.add('hidden')
-        cellClass.remove('marked-for-inactive')
-        changeCellValue(cell.id)
-      } else {
-        cellClass.remove('marked-for-active')
-      }
+      const cellClass = gameBoard[cell.id].position.firstChild.classList
+
+      cellClass.add('hidden')
+      cellClass.remove('marked-for-inactive')
+      cellClass.remove('marked-for-active')
+
+      gameBoard[cell.id].value = 0
+      gameBoard[cell.id].inDanger = false
+      gameBoard[cell.id].gotMarked = false
     })
+
     pauseGame()
-    console.log(iterationCount);
+
+    if (isPaused) {
+      alert(`Game Over! Final Score: ${iterationCount}`)
+    }
+
     isPaused = false
+    loopingWarning = false
+    allCellsInactive = false
     iterationCount = 0
   }
 
   const changeCellValue = (id) => {
-    !gameBoard[id].value ? gameBoard[id].value = 1 : gameBoard[id].value = 0
+    gameBoard[id].value === 0 ? gameBoard[id].value = 1 : gameBoard[id].value = 0
   }
 
   const loadConfigToGameBoard = (config) => {
-    // if (!isPreview) {
+    getQuerySelectors()
     endGame()
-    // } else {
-    //   board = gameBoard
-    //   previewBoard = board
-    // }
-    // console.log(board);
+
     config.config.forEach(selectedCell => {
       gameBoard.forEach(cell => {
         if (cell.id === selectedCell.id) {
-          cell.position.firstChild.classList.toggle('hidden')
-          cell.value = 1
+          gameBoard[cell.id].position.firstChild.classList.toggle('hidden')
+          gameBoard[cell.id].value = 1
+          gameBoard[cell.id].gotMarked = true
         }
       })
     })
+
     isViewingConfigs = false
   }
 
   const returnToBoard = () => {
     isViewingConfigs = false
   }
-
-  // const previewConfig = (config) => {
-  //   const preview = document.getElementById('previewBoard')
-  //   preview.classList.toggle('hidden')
-  //   loadConfigToGameBoard(previewBoard, config, true)
-  // }
 </script>
 
+<!-- {#if isFreshlyOpened}
+  <section class="overlay" id="overlay">
+    <button
+    class="overlay__button"
+    id="overlayButton"
+    on:click={beginSelectingCells}
+    >Click here to begin your ZERO-PLAYER MMORPG EXPERIENCE
+  </button>
+</section>
+{/if} -->
 <main>
-  {#if isFreshlyOpened}
-    <section class="overlay" id="overlay">
-      <button
-        class="overlay__button"
-        id="overlayButton"
-        on:click={beginSelectingCells}
-        >Click here to begin your ZERO-PLAYER MMORPG EXPERIENCE
-      </button>
-    </section>
-  {/if}
   {#if isViewingConfigs}
     <section class="overlay-two" id="overlayTwo">
       <div class="load-config-modal">
@@ -197,9 +253,6 @@
             <button on:click={() => loadConfigToGameBoard(config)}>Load {config.title}</button>
           </div>
         {/each}
-        <!-- <div class="config-preview hidden" id="previewBoard">
-          <PreviewGameBoard {gameBoard} />
-        </div> -->
         <button class="" on:click={returnToBoard}>Go Back</button>
       </div>
     </section>
@@ -208,7 +261,8 @@
     <button id="gameButton" on:click={beginGame}>BEGIN GAME</button>
     <button on:click={endGame}>END GAME & CLEAR BOARD</button>
     <button on:click={viewSavedConfigs}>LOAD CONFIGURATION</button>
-    <GameBoard {gameBoard} {changeCellValue} {isPaused}/>
+    <p class="count">Your Score = {iterationCount}</p>
+    <GameBoard {gameBoard} {changeCellValue} {isPaused} {getQuerySelectors} />
   </div>
 </main>
 
@@ -244,5 +298,9 @@
     color: black;
     font-size: 14px;
     position: absolute;
+  }
+
+  .count {
+    font-size: 12px;
   }
 </style>

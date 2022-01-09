@@ -3,11 +3,10 @@
   import { savedConfigs } from '/store/savedConfigs.js'
 
   export let gameBoard
-  // export let gameButton
   export let changeCellValue
   export let isPaused
+  export let getQuerySelectors
 
-  // let isPreview = false
   let latestConfig;
   let savedConfig = {}
 
@@ -15,13 +14,16 @@
     savedConfig = configs
   })
 
-  const toggleActive = (e) => {
-    e.classList.toggle('hidden')
-    let cell = gameBoard[e.id]
+  const toggleActive = (id) => {
+    let cell = gameBoard[id]
+    getQuerySelectors()
+    cell.position.firstChild.classList.toggle('hidden')
     changeCellValue(cell.id)
+    // cell.gotMarked ? cell.gotMarked = false : cell.gotMarked = true
     if (!isPaused) {
-      latestConfig = gameBoard.filter(cell => cell.value)
+      latestConfig = gameBoard.filter(cell => gameBoard[cell.id].value)
     }
+    // console.log(cell);
   }
 
   const saveLatestConfig = () => {
@@ -43,7 +45,7 @@
 <button on:click={saveLatestConfig}>SAVE STARTING CONFIGURATION (CONFIGURATION MOST RECENTLY USED)</button>
 <div class="game-board">
   {#each gameBoard as cell, i}
-    <Cell {toggleActive} id={i} cell={cell} />
+    <Cell {toggleActive} id={i} />
   {/each}
 </div>
 
