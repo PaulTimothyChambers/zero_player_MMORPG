@@ -127,6 +127,8 @@
 
 - A leaderboard displaying the top players' scores
 
+- An adjustable slider to manipulate the game speed (live change?)
+
 - The total score achievable for each preset configuration displayed next to that configuration
 
 - A 'Preview Configuration' button for each saved configuration
