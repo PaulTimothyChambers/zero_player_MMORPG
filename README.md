@@ -7,10 +7,7 @@
 - [Code Architecture](#Code-Architecture)
 - [Installation and Set Up](#Installation-and-Set-Up)
 - [Illustrations](#Illustrations)
-- [Wins](#Wins)
-- [Challenges](#Challenges)
 - [Contributors](#Contributors)
-- [Project Specs](#Project-Specs)
 
 ## **Abstract**
 
