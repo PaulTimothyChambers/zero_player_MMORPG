@@ -1,27 +1,24 @@
 <script>
   export let id
-  export let cell
   export let toggleActive
-  // export let isPreview
 </script>
 
 <div
   type="button"
   class="square"
   id={id}
-  value={cell}
-  on:click={(e) => toggleActive(e.target.firstChild)}
-  ><div
+  on:click={() => toggleActive(id)}
+  ><p
+    type="button"
     class="square-active hidden"
     id={id}
-    on:click={(e) => toggleActive(e.target)}
     >
-  </div>
+  </p>
 </div>
+<!-- on:click={() => toggleActive(id)} -->
 
 <style>
-  .square,
-  .square-active {
+  .square {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,9 +31,10 @@
 
   .square-active,
   .hidden {
+    margin: 0rem 0rem 0rem 0rem;
     background-color: #F0FFFE;
-    height: 0.56rem;
-    width: 0.56rem;
+    height: 0.52rem;
+    width: 0.52rem;
   }
 
   .hidden {
