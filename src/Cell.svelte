@@ -1,6 +1,6 @@
 <script>
-  export let id
-  export let toggleActive
+  export let id;
+  export let toggleActive;
 </script>
 
 <div
@@ -15,7 +15,6 @@
     >
   </p>
 </div>
-<!-- on:click={() => toggleActive(id)} -->
 
 <style>
   .square {
