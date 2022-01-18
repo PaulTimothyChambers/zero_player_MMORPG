@@ -125,8 +125,6 @@
 
 ## **Future Features**
 
-- A leaderboard displaying the top players' scores
-
 - An adjustable slider to manipulate the game speed (live change?)
 
 - The total score achievable for each preset configuration displayed next to that configuration
@@ -140,8 +138,6 @@
 - Helpful, pop-up 'hints' to display in certain cases. For example, if a user creates a custom configuration wherein no active cells have any active neighboring cells, pressing 'Begin Game' will cause all the selected cells to immediately become inactive on the first pass through the gameboard. Within the game over notification, a helpful hint could be displayed, advising a user to be sure to group active cells (to some degree), so that the baked-in game rules may extrapolate further on the user's design.
 
 - A way for a user to remove and/or rename saved configurations.
-
-- A way to for a user to provide a custom title to any configuration they save for later use
 
 ## **Contributors**
 
