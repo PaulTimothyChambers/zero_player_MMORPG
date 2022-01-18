@@ -175,29 +175,19 @@
       alert(`Game Over! Final Score: ${iterationCount}`);
       clearVariables();
     }
-
   };
 
   const setNewHighScores = () => {
+    if (!newTopTenPlayerName) {
+      let randomInt = Math.random() * (10000 - 1) + 1
+      newTopTenPlayerName = `ANONYMOUS USER ${randomInt.toFixed(0)}`;
+    }
+
     allHighScores.splice(9, 1, {id: Date.now(), player: newTopTenPlayerName, score: iterationCount});
     allHighScores.sort((a, b) => b.score - a.score);
     highScores.update(scores => scores = allHighScores);
     isTopScore = false;
     clearVariables();
-  }
-
-  const clearVariables = () => {
-    isInPlay = false;
-    allCellsInactive = false;
-    iterationCount = 0;
-  }
-
-  const changeCellValue = (id) => {
-    gameBoard[id].value === 0 ? gameBoard[id].value = 1 : gameBoard[id].value = 0;
-  };
-
-  const viewSavedConfigs = () => {
-    isViewingConfigs = true;
   };
 
   const getQuerySelectors = () => {
@@ -210,31 +200,26 @@
     }
   };
 
-  const nameNewConfig = (latestConfig) => {
-    configToSave = latestConfig;
-    isSavingConfig = true;
-  }
-
   const saveLatestConfig = (latestConfig) => {
+    if (!newConfigName) {
+      newConfigName = 'Untitled';
+    }
+
     savedConfig = {
       id: Date.now(),
       title: newConfigName,
       config: configToSave
     };
+
     savedConfigs.update(configs => [...configs, savedConfig]);
     configToSave = [];
     newConfigName = '';
-    cancelSave()
+    cancelSave();
   };
-
-  const cancelSave = () => {
-    isSavingConfig = false;
-  }
 
   const loadConfigToGameBoard = (config) => {
     getQuerySelectors();
     endGame();
-    console.log(config);
     config.config.forEach(selectedCell => {
       gameBoard.forEach(cell => {
         if (cell.id === selectedCell.id) {
@@ -244,7 +229,42 @@
         }
       })
     })
+
     returnToBoard();
+  };
+
+  const clearVariables = () => {
+    isInPlay = false;
+    allCellsInactive = false;
+    iterationCount = 0;
+  };
+
+  const changeCellValue = (id) => {
+    gameBoard[id].value === 0 ? gameBoard[id].value = 1 : gameBoard[id].value = 0;
+  };
+
+  const removeSavedConfig = (id) => {
+    savedConfigs.update(configs => configs.filter(config => config.id !== id));
+  };
+
+  const nameNewConfig = (latestConfig) => {
+    if (latestConfig) {
+      configToSave = latestConfig;
+      isSavingConfig = true;
+    }
+
+    else {
+      cancelSave();
+      alert('No configuration found. Please select at least one cell from the board below:');
+    }
+  };
+
+  const cancelSave = () => {
+    isSavingConfig = false;
+  };
+
+  const viewSavedConfigs = () => {
+    isViewingConfigs = true;
   };
 
   const returnToBoard = () => {
@@ -254,19 +274,20 @@
 
 <main>
   {#if isViewingConfigs}
-    <section class="overlay-two">
+    <section class="overlay">
       <div class="modal">
         {#each $savedConfigs as config}
           <div class="config-card">
             <p>{config.title}</p>
             <button on:click={() => loadConfigToGameBoard(config)}>Load {config.title}</button>
+            <button on:click={() => removeSavedConfig(config.id)}>Delete {config.title}</button>
           </div>
         {/each}
         <button class="" on:click={returnToBoard}>Go Back</button>
       </div>
     </section>
   {:else if isTopScore}
-    <section class="overlay-two">
+    <section class="overlay">
       <div class="modal">
         <form on:submit={setNewHighScores}>
           <input type="text" name="playerName" bind:value={newTopTenPlayerName}>
@@ -275,7 +296,7 @@
       </div>
     </section>
   {:else if isSavingConfig}
-    <section class="overlay-two">
+    <section class="overlay">
       <div class="modal">
         <form on:submit={saveLatestConfig}>
           <input type="text" name="playerName" bind:value={newConfigName}>
@@ -287,8 +308,8 @@
   {/if}
   <nav class="user-interaction-bar">
     <button class="begin-game-button" id="gameButton" on:click={beginGame}>BEGIN GAME</button>
-    <button class="end-game-button" on:click={endGame}>END GAME (clears board)</button>
-    <button class="load-config-button" on:click={viewSavedConfigs}>LOAD CONFIGURATION</button>
+    <button class="end-game-button" on:click={endGame}>END GAME & CLEAR BOARD</button>
+    <button class="load-config-button" on:click={viewSavedConfigs}>LOAD SAVED CONFIGURATIONS</button>
   </nav>
   <GameBoard {gameBoard} {changeCellValue} {isInPlay} {getQuerySelectors} {nameNewConfig}/>
   <p class="count">Your Score = {iterationCount}</p>
@@ -299,7 +320,8 @@
         <p class="loading-scores">Loading high scores...</p>
       {:else}
         {#each allHighScores as highScore, i}
-          <p class="high-score">{`${i + 1}:`} {highScore.player} - {highScore.score}</p>
+          <p class="high-scores__name">{`${i + 1}:`} {highScore.player}</p>
+          <p class="high-scores__score">{highScore.score}</p>
         {/each}
       {/if}
     </div>
@@ -322,8 +344,7 @@
     width: 15vw;
   }
 
-  /* .overlay, */
-  .overlay-two {
+  .overlay {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -356,7 +377,7 @@
   }
 
   .count {
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .high-scores {
@@ -364,7 +385,16 @@
     border-width: 0.3rem;
     border-radius: 3px;
     width: 20rem;
-    height: auto;
     font-size: 11px;
+  }
+
+  .high-scores__name {
+    margin-left: 0.3rem;
+  }
+
+  .high-scores__score {
+    text-align: right;
+    margin-top: -1.5rem;
+    margin-right: 0.7rem;
   }
 </style>
