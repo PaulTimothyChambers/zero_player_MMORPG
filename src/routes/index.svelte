@@ -259,10 +259,6 @@
     }
   };
 
-  // const renameConfig = (title) => {
-  //   savedConfigs.update(configs => title =)
-  // }
-
   const cancelSave = () => {
     isSavingConfig = false;
   };
@@ -284,7 +280,6 @@
           <div class="config-card">
             <p>{config.title}</p>
             <button on:click={() => loadConfigToGameBoard(config)}>Load {config.title}</button>
-            <!-- <button on:click{() => renameConfig(config.title)}>Rename {config.title}</button> -->
             <button on:click={() => removeSavedConfig(config.id)}>Delete {config.title}</button>
           </div>
         {/each}
