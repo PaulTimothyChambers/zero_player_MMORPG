@@ -9,6 +9,7 @@
   import { highScores } from '/store/highScores.js';
 
   let savedConfig = {};
+  let configToSave = [];
   let allHighScores = [];
   let iterationCount = 0;
   let gameButton;
@@ -19,9 +20,11 @@
   let isInPlay = false;
   let isTopScore = false;
   let ranSelectors = false;
+  let isSavingConfig = false;
   let allCellsInactive = false;
   let isViewingConfigs = false;
 
+  $: newConfigName = '';
   $: newTopTenPlayerName = '';
 
   highScores.subscribe(scores => {
@@ -207,18 +210,31 @@
     }
   };
 
+  const nameNewConfig = (latestConfig) => {
+    configToSave = latestConfig;
+    isSavingConfig = true;
+  }
+
   const saveLatestConfig = (latestConfig) => {
     savedConfig = {
       id: Date.now(),
-      title: 'title',
-      config: latestConfig
+      title: newConfigName,
+      config: configToSave
     };
     savedConfigs.update(configs => [...configs, savedConfig]);
+    configToSave = [];
+    newConfigName = '';
+    cancelSave()
   };
+
+  const cancelSave = () => {
+    isSavingConfig = false;
+  }
 
   const loadConfigToGameBoard = (config) => {
     getQuerySelectors();
     endGame();
+    console.log(config);
     config.config.forEach(selectedCell => {
       gameBoard.forEach(cell => {
         if (cell.id === selectedCell.id) {
@@ -239,7 +255,7 @@
 <main>
   {#if isViewingConfigs}
     <section class="overlay-two">
-      <div class="load-config-modal">
+      <div class="modal">
         {#each $savedConfigs as config}
           <div class="config-card">
             <p>{config.title}</p>
@@ -251,10 +267,20 @@
     </section>
   {:else if isTopScore}
     <section class="overlay-two">
-      <div class="load-config-modal">
+      <div class="modal">
         <form on:submit={setNewHighScores}>
           <input type="text" name="playerName" bind:value={newTopTenPlayerName}>
           <button class="" on:click={setNewHighScores}>Submit High Score</button>
+        </form>
+      </div>
+    </section>
+  {:else if isSavingConfig}
+    <section class="overlay-two">
+      <div class="modal">
+        <form on:submit={saveLatestConfig}>
+          <input type="text" name="playerName" bind:value={newConfigName}>
+          <button class="" on:click={saveLatestConfig}>Save Configuration</button>
+          <button class="" on:click={cancelSave}>Cancel</button>
         </form>
       </div>
     </section>
@@ -264,7 +290,7 @@
     <button class="end-game-button" on:click={endGame}>END GAME (clears board)</button>
     <button class="load-config-button" on:click={viewSavedConfigs}>LOAD CONFIGURATION</button>
   </nav>
-  <GameBoard {gameBoard} {changeCellValue} {isInPlay} {getQuerySelectors} {saveLatestConfig}/>
+  <GameBoard {gameBoard} {changeCellValue} {isInPlay} {getQuerySelectors} {nameNewConfig}/>
   <p class="count">Your Score = {iterationCount}</p>
   <section class="scoreboard">
     <div class="high-scores">
@@ -320,7 +346,7 @@
     cursor: pointer;
   } */
 
-  .load-config-modal {
+  .modal {
     height: 20rem;
     width: 20rem;
     background-color: white;
@@ -339,5 +365,6 @@
     border-radius: 3px;
     width: 20rem;
     height: auto;
+    font-size: 11px;
   }
 </style>

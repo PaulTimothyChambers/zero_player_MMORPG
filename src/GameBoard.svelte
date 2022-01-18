@@ -4,8 +4,8 @@
 
   export let isInPlay;
   export let gameBoard;
+  export let nameNewConfig;
   export let changeCellValue;
-  export let saveLatestConfig;
   export let getQuerySelectors;
 
   let latestConfig;
@@ -23,7 +23,7 @@
 
 <button
   class="save-config-button"
-  on:click={() => saveLatestConfig(latestConfig)}
+  on:click={() => nameNewConfig(latestConfig)}
 >SAVE MOST RECENT STARTING CONFIGURATION</button>
 <div class="game-board">
   {#each gameBoard as cell, id}
