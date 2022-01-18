@@ -9,7 +9,7 @@ const highScores = writable([
   {id: 6, player: 'LIT BoT', score: 5},
   {id: 7, player: 'LUCKY-# BoT', score: 4},
   {id: 8, player: 'ENTIRELY-UNREMARKABLE BoT', score: 3},
-  {id: 9, player: 'JUST-HAPPY-NOT-TO-BE-THE-BOTTOM-BOT BoT', score: 2},
+  {id: 9, player: 'PENULTIMATE BoT', score: 2},
   {id: 10, player: 'JUST-HAPPY-TO-BE-HERE BoT', score: 1}
 ]);
 
