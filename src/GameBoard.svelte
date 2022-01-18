@@ -2,52 +2,40 @@
   import Cell from './Cell.svelte';
   import { savedConfigs } from '/store/savedConfigs.js';
 
+  export let isInPlay;
   export let gameBoard;
   export let changeCellValue;
-  export let isPaused;
+  export let saveLatestConfig;
   export let getQuerySelectors;
 
   let latestConfig;
-  let savedConfig = {};
-
-  savedConfigs.subscribe(configs => {
-    savedConfig = configs;
-  });
 
   const toggleActive = (id) => {
     let cell = gameBoard[id];
     getQuerySelectors();
     cell.position.firstChild.classList.toggle('hidden');
     changeCellValue(cell.id);
-    if (!isPaused) {
+    if (!isInPlay) {
       latestConfig = gameBoard.filter(cell => gameBoard[cell.id].value);
     }
   };
-
-  const saveLatestConfig = () => {
-    savedConfig = {
-      id: Date.now(),
-      title: 'title',
-      config: latestConfig
-    };
-    // alertConfigSaved()
-    savedConfigs.update(configs => [...configs, savedConfig]);
-    // setTimeout(alertConfigSaved, 2000)
-  };
-
-  // const alertConfigSaved = () => {
-  //   document.toggle('popIn') ... (then 'fadeOut')
-  // }
 </script>
 
-<button on:click={saveLatestConfig}>SAVE STARTING CONFIGURATION (CONFIGURATION MOST RECENTLY USED)</button>
+<button
+  class="save-config-button"
+  on:click={() => saveLatestConfig(latestConfig)}
+>SAVE MOST RECENT STARTING CONFIGURATION</button>
 <div class="game-board">
-  {#each gameBoard as cell, i}
-    <Cell {toggleActive} id={i} />
+  {#each gameBoard as cell, id}
+    <Cell {toggleActive} {id}/>
   {/each}
 </div>
 
 <style media="screen">
+  .save-config-button {
+    width: 15vw;
+  }
+
   .game-board {
     width: 62.5rem;
     margin-top: 0.5rem;

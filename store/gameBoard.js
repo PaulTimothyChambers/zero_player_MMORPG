@@ -44,9 +44,9 @@ const determineSurrCells = (cell, i) => {
     gameBoard[cell.id+6499],
   ];
 
-  let cellsy = allSurroundingCells.filter(cell => cell !== undefined);
-  cellsy.forEach(cellssy => {
-    cell.surroundingCells = [...cell.surroundingCells, cellssy.id];
+  let filteredCells = allSurroundingCells.filter(cell => cell !== undefined);
+  filteredCells.forEach(filteredCell => {
+    cell.surroundingCells = [...cell.surroundingCells, filteredCell.id];
   })
 };
 
