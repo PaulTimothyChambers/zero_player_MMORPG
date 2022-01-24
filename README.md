@@ -14,7 +14,7 @@
 ## **Abstract**
 
 - This repository represents my third recreation of John Conway's 'Game of Life'. The first (working) version was written in vanilla JavaScript(JS), the second (non-working) version in React, and the third (working) version using SvelteKit Beta (Svelte v-3.44.0). The aim of each version has been to overcome the main challenge encountered when using JS to write a program that it is not (to my knowledge) specifically designed to handle.
-  This challenge, in short, is two-pronged: where/what/when information is stored must be carefully rationed out, in order that the many resource-heavy functions needed for this program to run in JS may do so without slowing the program down, all the while supporting an ever-increasing number of on-screen cells. Each version has leveraged my growing knowledge/ability with JS (and the various frameworks used) in order to produce the fastest, most efficient, and 'cheapest' solutions I can currently think of (though I am optimistic that better solutions may present themselves as my skill with JS grows).
+  This challenge, in short, is two-pronged: where/what/when information is stored must be carefully rationed out (in order that the many resource-heavy functions needed for this program to run in JS may do so without slowing the program down) while supporting an ever-increasing number of on-screen cells. Each version has leveraged my growing knowledge/ability with JS (and the various frameworks used) in order to produce the fastest, most efficient, and 'cheapest' solutions I can currently think of (though I am optimistic that better solutions may present themselves as my skill with JS grows).
 
 
 ## **Technologies**
