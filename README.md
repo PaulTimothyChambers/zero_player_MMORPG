@@ -5,7 +5,7 @@
 
 - [Abstract](#Abstract)
 - [Technologies](#Technologies)
-- [Installation and Set Up instructions for MacOS users](#Installation-and-Set-Up)
+- [Installation and Set Up Instructions for MacOS Users](#Installation-and-Set-Up-Instructions-for-MacOS-Users)
 - [Illustrations](#Illustrations)
 - [Contributors](#Contributors)
 
@@ -27,7 +27,7 @@
 - A little fiddling with Vite
 
 
-## **Installation and Set Up instructions for MacOS users**
+## **Installation and Set Up Instructions for MacOS Users**
 
 ***Note: following this guide is the only way to interact with the project until such time as it has been successfully deployed to the web. This guide assumes that the reader is unfamiliar with how to complete any of the following installation steps, so included below is a detailed, step-by-step walk-through of how to accomplish all that is needed to get this project 'up and running'***
 
