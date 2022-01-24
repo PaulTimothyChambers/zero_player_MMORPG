@@ -5,8 +5,7 @@
 
 - [Abstract](#Abstract)
 - [Technologies](#Technologies)
-- [Code Architecture](#Code-Architecture)
-- [Installation and Set Up](#Installation-and-Set-Up)
+- [Installation and Set Up instructions for MacOS users](#Installation-and-Set-Up)
 - [Illustrations](#Illustrations)
 - [Contributors](#Contributors)
 
