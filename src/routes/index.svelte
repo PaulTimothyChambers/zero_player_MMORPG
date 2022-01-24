@@ -8,24 +8,24 @@
   import { gameBoard } from '/store/gameBoard.js';
   import { highScores } from '/store/highScores.js';
 
-  let savedConfig = {};
-  let configToSave = [];
-  let allHighScores = [];
-  let iterationCount = 0;
   let gameButton;
   let gameInPlay;
   let updateBoard;
   let checkingLoops;
   let checkingInactivity;
+  let savedConfig = [];
+  let configToSave = [];
+  let allHighScores = [];
+  let iterationCount = 0;
   let isInPlay = false;
   let isTopScore = false;
   let ranSelectors = false;
   let isSavingConfig = false;
   let allCellsInactive = false;
   let isViewingConfigs = false;
-
-  $: newConfigName = '';
-  $: newTopTenPlayerName = '';
+  let newConfigName = '';
+  let newConfigTitle = '';
+  let newTopTenPlayerName = '';
 
   highScores.subscribe(scores => {
     allHighScores = scores;
@@ -247,6 +247,17 @@
     savedConfigs.update(configs => configs.filter(config => config.id !== id));
   };
 
+  const renameConfig = (config) => {
+    console.log($savedConfigs[$savedConfigs.indexOf(config.id)].isBeingRenamed);
+    // savedConfigs.set($savedConfigs[$savedConfigs.indexOf(config.id)])
+    // newConfigTitle = '';
+    // savedConfigs.update(configs => configs.forEach(config => {
+    //   if (config.id === conf.id) { config.isBeingRenamed = false }
+    // }))
+  };
+  // savedConfigs.update(configs => configs[configs.indexOf(config)].title = newConfigTitle);
+  // savedConfigs.update(configs => configs[configs.indexOf(config)].isBeingRenamed = false);
+
   const nameNewConfig = (latestConfig) => {
     if (latestConfig) {
       configToSave = latestConfig;
@@ -258,6 +269,16 @@
       alert('No configuration found. Please select at least one cell from the board below:');
     }
   };
+
+  // const beginRenamingConfig = (config) => {
+    // savedConfigs.update(configs => configs.forEach(config => {
+    //   if (config.id === conf.id) {
+    //     config.isBeingRenamed = true
+    //   }
+    // }))
+  //   savedConfigs.update(configs => $savedConfigs[savedConfig.indexOf(config)].isBeingRenamed = true)
+  //   console.log($savedConfigs[$savedConfigs.indexOf(config)].isBeingRenamed);
+  // };
 
   const cancelSave = () => {
     isSavingConfig = false;
@@ -278,9 +299,16 @@
       <div class="modal">
         {#each $savedConfigs as config}
           <div class="config-card">
-            <p>{config.title}</p>
-            <button on:click={() => loadConfigToGameBoard(config)}>Load {config.title}</button>
-            <button on:click={() => removeSavedConfig(config.id)}>Delete {config.title}</button>
+            <!-- {#if !config.config.isBeingRenamed} -->
+              <p>{config.title}</p>
+              <!-- <button on:click={() => beginRenamingConfig(config)}>Rename Configuration</button> -->
+              <button on:click={() => loadConfigToGameBoard(config)}>Load {config.title}</button>
+              <button on:click={() => removeSavedConfig(config.id)}>Delete {config.title}</button>
+            <!-- {:else} -->
+              <!-- <form on:submit={() => renameConfig(config)}>
+                <input type="text" name="configTitle" bind:value={newConfigTitle}>
+              </form> -->
+            <!-- {/if} -->
           </div>
         {/each}
         <button class="" on:click={returnToBoard}>Go Back</button>
