@@ -296,9 +296,9 @@
 <main>
   {#if isViewingConfigs}
     <section class="overlay">
-      <div class="modal">
+      <div class="overlay__modal">
         {#each $savedConfigs as config}
-          <div class="config-card">
+          <div class="modal__config-card">
             <!-- {#if !config.config.isBeingRenamed} -->
               <p>{config.title}</p>
               <!-- <button on:click={() => beginRenamingConfig(config)}>Rename Configuration</button> -->
@@ -316,7 +316,7 @@
     </section>
   {:else if isTopScore}
     <section class="overlay">
-      <div class="modal">
+      <div class="overlay__modal">
         <form on:submit={setNewHighScores}>
           <input type="text" name="playerName" bind:value={newTopTenPlayerName}>
           <button class="" on:click={setNewHighScores}>Submit High Score</button>
@@ -325,7 +325,7 @@
     </section>
   {:else if isSavingConfig}
     <section class="overlay">
-      <div class="modal">
+      <div class="overlay__modal">
         <form on:submit={saveLatestConfig}>
           <input type="text" name="playerName" bind:value={newConfigName}>
           <button class="" on:click={saveLatestConfig}>Save Configuration</button>
@@ -335,24 +335,32 @@
     </section>
   {/if}
   <nav class="user-interaction-bar">
-    <button class="begin-game-button" id="gameButton" on:click={beginGame}>BEGIN GAME</button>
-    <button class="end-game-button" on:click={endGame}>END GAME & CLEAR BOARD</button>
-    <button class="load-config-button" on:click={viewSavedConfigs}>LOAD SAVED CONFIGURATIONS</button>
+    <button class="user-interaction-bar__begin-game-button" id="gameButton" on:click={beginGame}>BEGIN GAME</button>
+    <button class="user-interaction-bar__end-game-button" on:click={endGame}>END GAME & CLEAR BOARD</button>
+    <button class="user-interaction-bar__load-config-button" on:click={viewSavedConfigs}>LOAD SAVED CONFIGURATIONS</button>
   </nav>
   <GameBoard {gameBoard} {changeCellValue} {isInPlay} {getQuerySelectors} {nameNewConfig}/>
   <p class="count">Your Score = {iterationCount}</p>
   <section class="scoreboard">
-    <div class="high-scores">
-      <h3 class="high-scores-header">HIGH SCORES</h3>
+    <article class="scoreboard__high-scores">
+      <h3 class="high-scores__header">HIGH SCORES</h3>
       {#if !allHighScores}
-        <p class="loading-scores">Loading high scores...</p>
+        <p class="high-scores__loading-scores">Loading high scores...</p>
       {:else}
         {#each allHighScores as highScore, i}
           <p class="high-scores__name">{`${i + 1}:`} {highScore.player}</p>
           <p class="high-scores__score">{highScore.score}</p>
         {/each}
       {/if}
-    </div>
+    </article>
+  </section>
+  <section class="game-rules">
+    <h2 class="">Game 'Rules':</h2>
+    <p class="game-rules__rule">(Dead cells are dark blue, living cells are light blue)</p>
+    <p class="game-rules__rule">* If a living cell has two or three living neighbors, it lives on</p>
+    <p class="game-rules__rule">* If it has less than two living neighbors or more than three, it dies</p>
+    <p class="game-rules__rule">* Finally, if a dead cell has exactly three living neighbors, it will come to life</p>
+    <h3 class="game-rules__encouraging-message">Expiriment with different configurations, and see how long your pattern lasts!</h3>
   </section>
 </main>
 
@@ -362,10 +370,21 @@
     flex-direction: column;
   }
 
-  .begin-game-button,
-  .end-game-button,
-  .load-config-button {
-    margin-bottom: 1rem;
+  .user-interaction-bar__begin-game-button,
+  .user-interaction-bar__end-game-button,
+  .user-interaction-bar__load-config-button {
+    position: absolute;
+    height: 3rem;
+    width: 11rem;
+    cursor: pointer;
+  }
+
+  .user-interaction-bar__end-game-button {
+    margin: 0rem 0rem 0rem 11.4rem;
+  }
+
+  .user-interaction-bar__load-config-button {
+    margin: 3.3rem 0rem 0rem 0rem;
   }
 
   .user-interaction-bar {
@@ -395,7 +414,7 @@
     cursor: pointer;
   } */
 
-  .modal {
+  .overlay__modal {
     height: 20rem;
     width: 20rem;
     background-color: white;
@@ -408,12 +427,13 @@
     font-size: 15px;
   }
 
-  .high-scores {
+  .scoreboard__high-scores {
     border-style: solid;
     border-width: 0.3rem;
     border-radius: 3px;
     width: 20rem;
     font-size: 11px;
+    margin-top: 4rem;
   }
 
   .high-scores__name {
@@ -424,5 +444,14 @@
     text-align: right;
     margin-top: -1.5rem;
     margin-right: 0.7rem;
+  }
+
+  .game-rules__rule {
+    width: 20rem;
+    margin: 0.3rem;
+  }
+
+  .game-rules__encouraging-message {
+    width: 22rem;
   }
 </style>

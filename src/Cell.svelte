@@ -25,7 +25,7 @@
     width: 0.625rem;
     background-color: black;
     border-style: none;
-    cursor: pointer;
+    cursor: cell;
   }
 
   .square-active,
