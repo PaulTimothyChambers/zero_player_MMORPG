@@ -24,7 +24,8 @@
 <button
   class="save-config-button"
   on:click={() => nameNewConfig(latestConfig)}
->SAVE MOST RECENT STARTING CONFIGURATION</button>
+  >SAVE MOST RECENT STARTING CONFIGURATION
+</button>
 <div class="game-board">
   {#each gameBoard as cell, id}
     <Cell {toggleActive} {id}/>
@@ -33,7 +34,11 @@
 
 <style media="screen">
   .save-config-button {
-    width: 15vw;
+    position: absolute;
+    height: 3rem;
+    width: 11rem;
+    margin: 3.3rem 0rem 0rem 11.4rem;
+    cursor: pointer;
   }
 
   .game-board {
