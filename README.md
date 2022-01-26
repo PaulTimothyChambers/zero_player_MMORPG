@@ -120,7 +120,7 @@
 
 ## **Illustrations**
 
-![app in action](https://github.com/PaulTimothyChambers/zero_player_MMORPG/blob/main/ZPGVid.gif)
+![app in action](https://github.com/PaulTimothyChambers/zero_player_MMORPG/blob/main/ZPGforGITHUB2.gif)
 
 
 ## **Future Features**
