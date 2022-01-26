@@ -360,7 +360,7 @@
     <p class="game-rules__rule">* If a living cell has two or three living neighbors, it lives on</p>
     <p class="game-rules__rule">* If it has less than two living neighbors or more than three, it dies</p>
     <p class="game-rules__rule">* Finally, if a dead cell has exactly three living neighbors, it will come to life</p>
-    <h3 class="game-rules__encouraging-message">Expiriment with different configurations, and see how long your pattern lasts!</h3>
+    <h3 class="game-rules__encouraging-message">Experiment with different configurations, and see how long your pattern lasts!</h3>
   </section>
 </main>
 
