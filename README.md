@@ -115,7 +115,7 @@
 
 ![address bar](https://i.imgur.com/72WgUD8.png)
 
-![application displaying](https://i.imgur.com/e9QZQ1j.png)
+![application displaying](https://i.imgur.com/5tomT0I.png)
 
 
 ## **Illustrations**
