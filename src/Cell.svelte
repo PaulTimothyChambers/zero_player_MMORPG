@@ -4,14 +4,16 @@
 </script>
 
 <div
+  data-cy=cell{id}
   type="button"
   class="square"
   id={id}
   on:click={() => toggleActive(id)}
   ><p
+    data-test=cell{id}a
     type="button"
     class="square-active hidden"
-    id={id}
+    id={id}a
     >
   </p>
 </div>

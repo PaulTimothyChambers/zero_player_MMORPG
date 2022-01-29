@@ -302,8 +302,8 @@
             <!-- {#if !config.config.isBeingRenamed} -->
               <p>{config.title}</p>
               <!-- <button on:click={() => beginRenamingConfig(config)}>Rename Configuration</button> -->
-              <button on:click={() => loadConfigToGameBoard(config)}>Load {config.title}</button>
-              <button on:click={() => removeSavedConfig(config.id)}>Delete {config.title}</button>
+              <button data-cy="loadConfigToBoard" on:click={() => loadConfigToGameBoard(config)}>Load {config.title}</button>
+              <button data-cy="removeConfig" on:click={() => removeSavedConfig(config.id)}>Delete {config.title}</button>
             <!-- {:else} -->
               <!-- <form on:submit={() => renameConfig(config)}>
                 <input type="text" name="configTitle" bind:value={newConfigTitle}>
@@ -311,15 +311,15 @@
             <!-- {/if} -->
           </div>
         {/each}
-        <button class="" on:click={returnToBoard}>Go Back</button>
+        <button data-cy="returnToBoard" class="" on:click={returnToBoard}>Go Back</button>
       </div>
     </section>
   {:else if isTopScore}
     <section class="overlay">
       <div class="overlay__modal">
         <form on:submit={setNewHighScores}>
-          <input type="text" name="playerName" bind:value={newTopTenPlayerName}>
-          <button class="" on:click={setNewHighScores}>Submit High Score</button>
+          <input data-cy="namePlayer" type="text" name="playerName" bind:value={newTopTenPlayerName}>
+          <button data-cy="submitHighScore" class="" on:click={setNewHighScores}>Submit High Score</button>
         </form>
       </div>
     </section>
@@ -327,17 +327,17 @@
     <section class="overlay">
       <div class="overlay__modal">
         <form on:submit={saveLatestConfig}>
-          <input type="text" name="playerName" bind:value={newConfigName}>
-          <button class="" on:click={saveLatestConfig}>Save Configuration</button>
-          <button class="" on:click={cancelSave}>Cancel</button>
+          <input data-cy="nameSavedConfig" type="text" name="playerName" bind:value={newConfigName}>
+          <button data-cy="submitSavedConfig" class="" on:click={saveLatestConfig}>Save Configuration</button>
+          <button data-cy="cancelSaveConfig" class="" on:click={cancelSave}>Cancel</button>
         </form>
       </div>
     </section>
   {/if}
   <nav class="user-interaction-bar">
-    <button class="user-interaction-bar__begin-game-button" id="gameButton" on:click={beginGame}>BEGIN GAME</button>
-    <button class="user-interaction-bar__end-game-button" on:click={endGame}>END GAME & CLEAR BOARD</button>
-    <button class="user-interaction-bar__load-config-button" on:click={viewSavedConfigs}>LOAD SAVED CONFIGURATIONS</button>
+    <button data-cy="beginGame" class="user-interaction-bar__begin-game-button" id="gameButton" on:click={beginGame}>BEGIN GAME</button>
+    <button data-cy="endGame" class="user-interaction-bar__end-game-button" on:click={endGame}>END GAME & CLEAR BOARD</button>
+    <button data-cy="openLoadConfig" class="user-interaction-bar__load-config-button" on:click={viewSavedConfigs}>LOAD SAVED CONFIGURATIONS</button>
   </nav>
   <GameBoard {gameBoard} {changeCellValue} {isInPlay} {getQuerySelectors} {nameNewConfig}/>
   <p class="count">Your Score = {iterationCount}</p>
