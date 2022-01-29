@@ -22,6 +22,7 @@
 </script>
 
 <button
+  data-cy="openSaveConfig" 
   class="save-config-button"
   on:click={() => nameNewConfig(latestConfig)}
   >SAVE MOST RECENT STARTING CONFIGURATION
