@@ -319,7 +319,7 @@
       <div class="overlay__modal">
         <form on:submit={setNewHighScores}>
           <input data-cy="namePlayer" type="text" name="playerName" bind:value={newTopTenPlayerName}>
-          <button data-cy="submitHighScore" class="" on:click={setNewHighScores}>Submit High Score</button>
+          <button data-cy="submitHighScore" class="" on:click|preventDefault={setNewHighScores}>Submit High Score</button>
         </form>
       </div>
     </section>
@@ -348,7 +348,7 @@
         <p class="high-scores__loading-scores">Loading high scores...</p>
       {:else}
         {#each allHighScores as highScore, i}
-          <p class="high-scores__name">{`${i + 1}:`} {highScore.player}</p>
+          <p data-cy="highScore{i}" class="high-scores__name">{`${i + 1}:`} {highScore.player}</p>
           <p class="high-scores__score">{highScore.score}</p>
         {/each}
       {/if}
