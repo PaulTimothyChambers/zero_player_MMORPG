@@ -297,13 +297,13 @@
   {#if isViewingConfigs}
     <section class="overlay">
       <div class="overlay__modal">
-        {#each $savedConfigs as config}
+        {#each $savedConfigs as config, i}
           <div class="modal__config-card">
             <!-- {#if !config.config.isBeingRenamed} -->
-              <p>{config.title}</p>
+              <p data-cy={config.title}{i}>{config.title}</p>
               <!-- <button on:click={() => beginRenamingConfig(config)}>Rename Configuration</button> -->
-              <button data-cy="loadConfigToBoard" on:click={() => loadConfigToGameBoard(config)}>Load {config.title}</button>
-              <button data-cy="removeConfig" on:click={() => removeSavedConfig(config.id)}>Delete {config.title}</button>
+              <button data-cy=loadConfigToBoard{i} on:click={() => loadConfigToGameBoard(config)}>Load {config.title}</button>
+              <button data-cy=removeConfig{i} on:click={() => removeSavedConfig(config.id)}>Delete {config.title}</button>
             <!-- {:else} -->
               <!-- <form on:submit={() => renameConfig(config)}>
                 <input type="text" name="configTitle" bind:value={newConfigTitle}>
@@ -328,8 +328,8 @@
       <div class="overlay__modal">
         <form on:submit={saveLatestConfig}>
           <input data-cy="nameSavedConfig" type="text" name="playerName" bind:value={newConfigName}>
-          <button data-cy="submitSavedConfig" class="" on:click={saveLatestConfig}>Save Configuration</button>
-          <button data-cy="cancelSaveConfig" class="" on:click={cancelSave}>Cancel</button>
+          <button data-cy="submitSavedConfig" class="" on:click|preventDefault={saveLatestConfig}>Save Configuration</button>
+          <button data-cy="cancelSaveConfig" class="" on:click|preventDefault={cancelSave}>Cancel</button>
         </form>
       </div>
     </section>
