@@ -20,6 +20,7 @@
 
 - Svelte
 - SvelteKit
+- Cypress
 - Netlify
 - JavaScript
 - CSS
