@@ -133,11 +133,7 @@
 
 - Information icons a user can hover over to view helpful details for each on-screen button's functionality
 
-- An information card detailing the 'rules' of the game, or perhaps a button a user can click to bring up these rules
-
 - Helpful, pop-up 'hints' to display in certain cases. For example, if a user creates a custom configuration wherein no active cells have any active neighboring cells, pressing 'Begin Game' will cause all the selected cells to immediately become inactive on the first pass through the gameboard. Within the game over notification, a helpful hint could be displayed, advising a user to be sure to group active cells (to some degree), so that the baked-in game rules may extrapolate further on the user's design.
-
-- A way for a user to remove and/or rename saved configurations.
 
 
 ## **Contributors**
