@@ -88,7 +88,7 @@
 
 8. Press enter and wait for a few moments while the terminal works
 
-9. You will know the terminal is finished working once the directory you are is shown once more, like in the following image
+9. You will know the terminal is finished working once the directory you are in is shown once more, as in the following image
 
 ![cloning complete](https://i.imgur.com/KCehSls.png)
 
