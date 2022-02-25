@@ -139,4 +139,4 @@
 
 ## **Contributors**
 
-- Paul Chambers [<img src="https://img.shields.io/badge/GitHub-181717.svg?&style=flaste&logo=github&logoColor=white" />](https://github.com/PaulTimothyChambers) | [<img src= "https://img.shields.io/badge/in-LinkedIn-blue" />](https://www.linkedin.com/in/paultimothychambers/)
+- Paul Chambers [<img src="https://img.shields.io/badge/GitHub-181717.svg?&style=flaste&logo=github&logoColor=white" />](https://github.com/PaulTimothyChambers) [<img src= "https://img.shields.io/badge/in-LinkedIn-blue" />](https://www.linkedin.com/in/paultimothychambers/)
