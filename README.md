@@ -27,6 +27,11 @@
 - SvelteKit
 
 
+## **Illustrations**
+
+![app in action](https://github.com/PaulTimothyChambers/zero_player_MMORPG/blob/main/ZPGforGITHUB2.gif)
+
+
 ## **Installation and Set Up Instructions (for MacOS)**
 
 ***Note: following this guide is the only way to interact with the project until such time as it has been successfully deployed to the web. This guide assumes that the reader is unfamiliar with how to locally host an application, so included below is a detailed, step-by-step walk-through of how to accomplish everything needed to get this project 'up and running'***
@@ -116,11 +121,6 @@
 ![address bar](https://i.imgur.com/72WgUD8.png)
 
 ![application displaying](https://i.imgur.com/5tomT0I.png)
-
-
-## **Illustrations**
-
-![app in action](https://github.com/PaulTimothyChambers/zero_player_MMORPG/blob/main/ZPGforGITHUB2.gif)
 
 
 ## **Future Features**
