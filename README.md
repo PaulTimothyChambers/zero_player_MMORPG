@@ -6,7 +6,7 @@
 - [Abstract](#Abstract)
 - [Technologies](#Technologies)
 - [Illustrations](#Illustrations)
-- [Installation and Set Up Instructions for MacOS Users](#Installation-and-Set-Up-Instructions-for-MacOS-Users)
+- [Installation and Set Up Instructions for MacOS Users](#Installation-and-Set-Up-Instructions-for-MacOS)
 - [Future Features](#Future-Features)
 - [Contributors](#Contributors)
 
